@@ -1,24 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Список дел</title>
-    <link href="list.css" rel="stylesheet" type="text/css">
+    <title>Приложение To-Do List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="list.css">
+
 </head>
 <body>
-<div id="myDIV" class="header">
-    <h2>Мой список дел</h2>
-    <input type="text" id="myInput" placeholder="Название...">
-    <span onclick="newElement()" class="addBtn">Добавить</span>
+<div class="todo" id="todo">
+    <h1>Мои списки дел </h1>
+    <div class="spisok"> <input type="text" id="myInput" placeholder="Добавить список" > </div>
+    <div class="dela"><ul id="li" class="todos">
+        <li>Вымыть кухню</li>
+        <li>Пойти в театр</li>
+    </ul>
+    </div>
 </div>
-<ul id="myUL">
-    <li>Попасть в спортзал</li>
-    <li class="checked">Оплатить счета</li>
-    <li>Познакомься с Джорджем</li>
-    <li>Купить яйца</li>
-    <li>Прочитать книгу</li>
-    <li>Организовать офис</li>
-</ul>
 <script src="list.js"></script>
 </body>
 </html>

@@ -2,6 +2,25 @@
 * {
     box-sizing: border-box;
 }
+.todo > h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.spisok {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.dela {
+    width: 100%;
+    height: 100%;
+
+
+}
 
 /* Удалите поля и отступы из списка */
 ul {
