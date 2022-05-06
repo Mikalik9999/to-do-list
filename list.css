@@ -1,0 +1,68 @@
+body {
+    background: burlywood;
+    height: 100%;
+    background-image: url("image/fon.jpg");
+}
+
+.todo {
+    display: flow;
+    align-content: center;
+    text-align: center;
+
+    height: auto;
+}
+
+.todo > h1 {
+    color: black;
+}
+
+.todos {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.spisok {
+    height: 39px;
+    margin: 0 25% 0 25%;
+    display: flex;
+}
+
+.spisok > input {
+   height: 39px;
+    margin: 0 0 0 5px;
+    padding: 0;
+    border: 0;
+    width: 95%;
+}
+
+.spisok > button {
+    height: 39px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.dela {
+    margin: 0 25% 0 25%;
+}
+
+.dela > ul > li {
+    font-size: 200%;
+    display: flex;
+    background-color: aquamarine;
+    margin: 0 0 10px 5px;
+    position: relative;
+    align-content: center;
+    text-align: center;
+}
+
+.galka {
+    position: absolute;
+    right: 6.5%;
+}
+
+.krest {
+    position: absolute;
+    right: 0;
+}
