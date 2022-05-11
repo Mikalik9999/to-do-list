@@ -7,7 +7,7 @@ const deleteAll = document.querySelector('.deleteAll');
 createElement('Вадик мерсовод');
 createElement('Андрюша аудюшник');
 
-addBtn.addEventListener('click',() => {
+function addWork () {
     if (input.value?.trim() === '' ) {
         alert('Пустая строка');
     }
@@ -15,6 +15,9 @@ addBtn.addEventListener('click',() => {
         createElement(input.value);
         input.value = '';
     }
+}
+addBtn.addEventListener('click',() => {
+    addWork();
 });
 
 function createElement(text) {
@@ -49,13 +52,7 @@ deleteAll.addEventListener('click',(all) => {
 
 input.addEventListener('keydown',function (e) {
     if (e.keyCode === 13) {
-        if (input.value?.trim() === '' ) {
-            alert('Пустая строка');
-        }
-        else {
-            createElement(input.value);
-            input.value = '';
-        }
+        addWork();
     }
 })
 
