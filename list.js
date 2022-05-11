@@ -7,7 +7,7 @@ const deleteAll = document.querySelector('.deleteAll');
 createElement('Вадик мерсовод');
 createElement('Андрюша аудюшник');
 
-function addWork () {
+function checkEmptyString () {
     if (input.value?.trim() === '' ) {
         alert('Пустая строка');
     }
@@ -17,7 +17,7 @@ function addWork () {
     }
 }
 addBtn.addEventListener('click',() => {
-    addWork();
+    checkEmptyString();
 });
 
 function createElement(text) {
@@ -52,7 +52,7 @@ deleteAll.addEventListener('click',(all) => {
 
 input.addEventListener('keydown',function (e) {
     if (e.keyCode === 13) {
-        addWork();
+        checkEmptyString();
     }
 })
 
