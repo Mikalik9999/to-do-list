@@ -1,7 +1,14 @@
 body {
-    background: burlywood;
     height: 100%;
     background-image: url("image/fon.jpg");
+}
+
+li {
+    list-style-type: none; /* Убираем маркеры */
+}
+ul {
+    margin-left: 0; /* Отступ слева в браузере IE и Opera */
+    padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
 }
 
 .todo {
@@ -22,13 +29,13 @@ body {
     display: block;
 }
 
-.spisok {
+.list {
     height: 39px;
     margin: 0 25% 0 25%;
     display: flex;
 }
 
-.spisok > input {
+.list > input {
    height: 39px;
     margin: 0 0 0 5px;
     padding: 0;
@@ -36,18 +43,18 @@ body {
     width: 95%;
 }
 
-.spisok > button {
+.list > button {
     height: 39px;
     margin: 0;
     padding: 0;
     border: 0;
 }
 
-.dela {
+.listFull {
     margin: 0 25% 0 25%;
 }
 
-.dela > ul > li {
+.listFull > ul > li {
     font-size: 200%;
     display: flex;
     background-color: aquamarine;
@@ -55,14 +62,30 @@ body {
     position: relative;
     align-content: center;
     text-align: center;
+    justify-content: space-between;
 }
 
-.galka {
-    position: absolute;
-    right: 6.5%;
+.deleteAll {
+    font-size: 200%;
+    background-color: blue;
+    align-content: center;
+    text-align: center;
 }
 
-.krest {
-    position: absolute;
-    right: 0;
+.doneText {
+    text-decoration: line-through;
+}
+
+.closeBtn {
+    width: 30px;
+    background-image: url("/image/delete.png");
+}
+
+.completeBtn {
+    width: 30px;
+    background-image: url("/image/complete.jpg");
+}
+
+.end {
+    text-decoration: line-through;
 }

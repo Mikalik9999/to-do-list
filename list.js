@@ -1,43 +1,61 @@
-close()
-function vvod() {
-    const input = document.querySelector("input[type='text']");
-    const ul = document.querySelector("ul.todos");
-    function createTodo() {
-        let parent = document.querySelector('#li');
-        let p = document.createElement('li');
-        const input = document.querySelector("input[type='text']");
-        p.innerHTML = input.value;
-        parent.append(p);
-    }
-    input.addEventListener("keypress", (keyPressed) => {
-        const keyEnter = 13;
-        if (keyPressed.which === keyEnter) {
-            createTodo();
-            close();
-        }
-    });
-    ul.addEventListener("click", onClickTodo);
-    input.value = "";
-}
-vvod()
+const addBtn = document.querySelector('.addBtn');
+const input = document.getElementById('input');
+const ul = document.querySelector('.todos');
+const deleteAll = document.querySelector('.deleteAll');
 
-function close(){
-    let myClose = document.getElementsByTagName("LI");
-    let i;
-    for (i = 0; i < myClose.length; i++) {
-        let span = document.createElement("SPAN");
-        let txt = document.createTextNode("\u00D7");
-        span.className = "close";
-        span.appendChild(txt);
-        myClose[i].appendChild(span);
+
+createElement('Вадик мерсовод');
+createElement('Андрюша аудюшник');
+
+addBtn.addEventListener('click',() => {
+    if (input.value?.trim() === '' ) {
+        alert('Пустая строка');
     }
-    const close = document.getElementsByClassName("close");
-    let a;
-    for (a = 0; a < close.length; a++) {
-        close[a].onclick = function() {
-            const div = this.parentElement;
-            div.style.display = "none";
+    else {
+        createElement(input.value);
+        input.value = '';
+    }
+});
+
+function createElement(text) {
+    const li = document.createElement("li");
+    const completeBtn = document.createElement('button');
+    const closeBtn = document.createElement('button');
+
+
+    closeBtn.addEventListener('click', deleteElement);
+    closeBtn.classList.add('closeBtn');
+    completeBtn.addEventListener('click', completeElement);
+    completeBtn.classList.add('completeBtn');
+
+    li.innerText = text;
+    li.appendChild(completeBtn);
+    li.appendChild(closeBtn);
+    ul.appendChild (li);
+}
+
+function deleteElement(event) {
+    event.target.parentElement.remove();
+}
+
+function completeElement(end){
+    end.target.parentElement.classList.add('end');
+    end.target.remove();
+}
+
+deleteAll.addEventListener('click',(all) => {
+    all.target.parentElement.remove();
+});
+
+input.addEventListener('keydown',function (e) {
+    if (e.keyCode === 13) {
+        if (input.value?.trim() === '' ) {
+            alert('Пустая строка');
+        }
+        else {
+            createElement(input.value);
+            input.value = '';
         }
     }
-}
+})
 
