@@ -1,11 +1,13 @@
-body {
+html {
     height: 100%;
-    background-image: url("image/fon.jpg");
+    width: 100%;
+    background: linear-gradient(aqua , blue);
 }
 
 li {
     list-style-type: none; /* Убираем маркеры */
 }
+
 ul {
     margin-left: 0; /* Отступ слева в браузере IE и Opera */
     padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
@@ -33,6 +35,8 @@ ul {
     height: 39px;
     margin: 0 25% 0 25%;
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .list > input {
@@ -41,13 +45,26 @@ ul {
     padding: 0;
     border: 0;
     width: 95%;
+    text-indent: 5%;
 }
 
 .list > button {
-    height: 39px;
-    margin: 0;
-    padding: 0;
-    border: 0;
+    color: #c065c0;
+    background: dodgerblue;
+    transition: all 0.3s ease;
+    border: none;
+    padding: 1.5em;
+    background-image: url("/image/ok.jpg");
+    background-size: cover;
+}
+
+.list > button:hover{
+    background: gray;
+    color: white;
+    background-image: url("/image/ok.jpg");
+    background-size: cover;
+    padding: 1.5em;
+    border: none;
 }
 
 .listFull {
@@ -55,14 +72,42 @@ ul {
 }
 
 .listFull > ul > li {
-    font-size: 200%;
+    font-size: 150%;
     display: flex;
-    background-color: aquamarine;
+    /*background-color: aquamarine;*/
     margin: 0 0 10px 5px;
     position: relative;
     align-content: center;
     text-align: center;
     justify-content: space-between;
+    text-indent: 5%;
+}
+
+input:hover{
+    background-color: white;
+    text-decoration: blue;
+}
+
+input::placeholder {
+    color: blue;
+}
+
+.deleteAll:hover{
+    background-color: white;
+    width: 300px;
+}
+
+
+li:nth-child(odd){
+    background-color: slateblue;
+}
+
+li:nth-child(even){
+    background-color: aqua;
+}
+
+li:hover{
+    background-color: white;
 }
 
 .deleteAll {
@@ -77,15 +122,52 @@ ul {
 }
 
 .closeBtn {
-    width: 30px;
+    background-size: cover;
     background-image: url("/image/delete.png");
+    padding: 2em;
 }
 
 .completeBtn {
-    width: 30px;
+    background-size: cover;
+    padding: 2em;
     background-image: url("/image/complete.jpg");
+    margin: auto;
 }
 
-.end {
+.complete {
     text-decoration: line-through;
+}
+
+select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    border: none;
+}
+
+.select{
+    margin: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+select{
+    color: blue;
+    width: 8rem;
+    cursor: pointer;
+    padding: 0.7rem;
+}
+
+.select::after{
+    content: "\25bc";
+    position: absolute;
+    color: blue;
+    top: 7px;
+    right: 6px;
+    pointer-events: none;
+}
+
+.select:hover::after{
+    color: #583429;
 }

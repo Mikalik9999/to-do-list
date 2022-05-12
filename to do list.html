@@ -9,10 +9,15 @@
 <body>
 <div class="todo" id="todo">
     <h1>Мои списки дел </h1>
-    <div class="list"> <input type="text" id="input"  placeholder="Добавить список" >
-        <button class="addBtn">
-            <img src="/image/ok.jpg" width="30px">
-        </button>
+    <div class="list"> <input type="text" id="input"  placeholder="Добавить список" required >
+        <button class="addBtn" type="submit"></button>
+        <div class="select">
+            <select name="todos" class="filter_todo">
+                <option value="all">Всё</option>
+                <option value="Выполнено">Completed</option>
+                <option value="Невыполнено">Uncompleted</option>
+            </select>
+        </div>
     </div>
     <div>
     <div class="listFull">

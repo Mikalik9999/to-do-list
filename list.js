@@ -2,6 +2,7 @@ const addBtn = document.querySelector('.addBtn');
 const input = document.getElementById('input');
 const ul = document.querySelector('.todos');
 const deleteAll = document.querySelector('.deleteAll');
+const x = document.createElement ("div");
 
 
 createElement('Вадик мерсовод');
@@ -16,9 +17,6 @@ function checkEmptyString () {
         input.value = '';
     }
 }
-addBtn.addEventListener('click',() => {
-    checkEmptyString();
-});
 
 function createElement(text) {
     const li = document.createElement("li");
@@ -41,18 +39,22 @@ function deleteElement(event) {
     event.target.parentElement.remove();
 }
 
-function completeElement(end){
-    end.target.parentElement.classList.add('end');
-    end.target.remove();
+function completeElement(e){
+    e.target.parentElement.classList.add('complete');
+    e.target.remove();
 }
 
-deleteAll.addEventListener('click',(all) => {
-    all.target.parentElement.remove();
+deleteAll.addEventListener('click',() => {
+    ul.innerHTML = '';
 });
 
-input.addEventListener('keydown',function (e) {
-    if (e.keyCode === 13) {
+input.addEventListener('keydown', (e) => {
+    if (e.keyCode === 13) { //поправить
         checkEmptyString();
     }
 })
+
+addBtn.addEventListener('click',() => {
+    checkEmptyString();
+});
 
