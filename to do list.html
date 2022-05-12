@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="todo" id="todo">
-    <h1>Мои списки дел </h1>
+    <h1 class="title">Мои списки дел </h1>
     <div class="list"> <input type="text" id="input"  placeholder="Добавить список" required >
         <button class="addBtn" type="submit"></button>
         <div class="select">
@@ -19,13 +19,14 @@
             </select>
         </div>
     </div>
-    <div>
+    <div class="listUnFull">
     <div class="listFull">
         <ul class="todos">
         </ul>
     </div>
     <button class="deleteAll"> Удалить всё </button>
     </div>
+    <div class="information"> Информация </div>
 </div>
 <script src="list.js"></script>
 </body>

@@ -1,11 +1,16 @@
 html {
     height: 100%;
     width: 100%;
-    background: linear-gradient(aqua , blue);
+    background: linear-gradient(135deg, #6157d1 , #ba65c2);
+}
+
+.title {
+    color: white;
 }
 
 li {
     list-style-type: none; /* Убираем маркеры */
+    background-color: white;
 }
 
 ul {
@@ -19,10 +24,6 @@ ul {
     text-align: center;
 
     height: auto;
-}
-
-.todo > h1 {
-    color: black;
 }
 
 .todos {
@@ -74,13 +75,11 @@ ul {
 .listFull > ul > li {
     font-size: 150%;
     display: flex;
-    /*background-color: aquamarine;*/
     margin: 0 0 10px 5px;
-    position: relative;
     align-content: center;
     text-align: center;
     justify-content: space-between;
-    text-indent: 5%;
+    padding: 10px;
 }
 
 input:hover{
@@ -97,17 +96,9 @@ input::placeholder {
     width: 300px;
 }
 
-
-li:nth-child(odd){
-    background-color: slateblue;
-}
-
-li:nth-child(even){
-    background-color: aqua;
-}
-
 li:hover{
-    background-color: white;
+    box-shadow: inset -5px -5px 30px 5px rgba(0, 0, 0, 0.2),
+                inset 5px 5px 30px 5px rgba(0, 0, 0, 0.2);
 }
 
 .deleteAll {
@@ -122,20 +113,23 @@ li:hover{
 }
 
 .closeBtn {
-    background-size: cover;
-    background-image: url("/image/delete.png");
-    padding: 2em;
+    background: url("/image/delete.png") no-repeat center;
+    border: 0;
+    width: 30px;
+    height: 30px;
 }
 
 .completeBtn {
-    background-size: cover;
-    padding: 2em;
-    background-image: url("/image/complete.jpg");
-    margin: auto;
+    background: url("/image/complete.png") no-repeat center;
+    margin-right: 30px;
+    border: 0;
+    width: 30px;
+    height: 30px;
 }
 
 .complete {
     text-decoration: line-through;
+    background-color: #c3aee6;
 }
 
 select{
@@ -170,4 +164,62 @@ select{
 
 .select:hover::after{
     color: #583429;
+}
+
+.wrapperBtn {
+    display: flex;
+    align-items: center;
+}
+
+.information {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    border-radius: 5px;
+    height: 30px;
+    width: 300px;
+    padding: 5px;
+    color: white;
+    align-items: center;
+    display: none;
+    font-size: 20px;
+}
+
+.informationSuccess{
+    background: #00b462;
+}
+
+.informationSuccess:before{
+    background: url("/image/wellDom.png") no-repeat;
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    content: ' ';
+    margin-right: 5px;
+}
+
+.informationError{
+    background: #f44336;
+}
+
+.informationError:before{
+    background: url("/image/closeDom.png") no-repeat;
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    content: ' ';
+    margin-right: 5px;
+}
+
+.informationFinish{
+    background: #f2bd1d
+}
+
+.informationFinish:before{
+    background: url("/image/finish.png") no-repeat;
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    content: ' ';
+    margin-right: 5px;
 }
