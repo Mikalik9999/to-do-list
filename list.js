@@ -2,9 +2,9 @@ const addBtn = document.querySelector('.addBtn');
 const input = document.getElementById('input');
 const ul = document.querySelector('.todos');
 const deleteAll = document.querySelector('.deleteAll');
-const information = document.querySelector('.information');
-
-
+const informationWrapper = document.querySelector('.informationWrapper');
+const select = document.querySelector('.filterTodo');
+const deleteCompletedBtn = document.querySelector('.deleteCompleted');
 
 createElement('Вадик мерсовод');
 createElement('Андрюша аудюшник');
@@ -40,18 +40,31 @@ function createElement(text) {
 }
 
 function deleteElement(event) {
+    const li = event.target.parentElement.parentElement;
+    const animation = li.animate ({ opacity: [1, 0]}, 500);
+
+    animation.onfinish = () => {
+        li.remove();
+    }
     showInformation('Задача удалена','finish');
-    event.target.parentElement.parentElement.remove();
 }
 
-function completeElement(e){
+function completeElement(e){ //удаление кнопки выполнения задачи
     e.target.parentElement.parentElement.classList.add('complete');
-    e.target.remove();
+    console.log(e.target);
+    const animation = e.target.animate ({ opacity: [1, 0]}, 500);
+
+    animation.onfinish = () => {
+        e.target.remove();
+    }
 }
 
 function showInformation(text, type){
+    const information = document.createElement('div');
+
     information.innerText = text;
-    information.style.display = 'flex';
+    information.className = 'information';
+    informationWrapper.appendChild(information);
     if (type === 'error') {
         information.classList.add('informationError');
     }
@@ -62,9 +75,43 @@ function showInformation(text, type){
         information.classList.add('informationFinish');
     }
     setTimeout(()=> {
-        information.style.display = 'none';
-        information.className = 'information';
+        const animation = information.animate ({ opacity: [1, 0]}, 1000);
+        animation.onfinish = () => {
+            information.remove();
+        }
     },5000);
+}
+
+function showUncompletedTasks () {
+    const allTasks = document.querySelectorAll('li');
+
+    allTasks.forEach((item) => {
+        if (!item.classList.contains('complete')) {
+            item.style.display = 'flex';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+
+function showAllTasks () {
+    const allTasks = document.querySelectorAll('li');
+
+    allTasks.forEach((item) => {
+        item.style.display = 'flex';
+    });
+}
+
+function showCompletedTasks () {
+    const allTasks = document.querySelectorAll('li');
+
+    allTasks.forEach((item) => {
+        if (item.classList.contains('complete')) {
+            item.style.display = 'flex';
+        } else {
+            item.style.display = 'none';
+        }
+    });
 }
 
 deleteAll.addEventListener('click',() => {
@@ -79,5 +126,32 @@ input.addEventListener('keydown', (e) => {
 
 addBtn.addEventListener('click',() => {
     checkEmptyString();
+});
+
+deleteCompletedBtn.addEventListener('click',() => {
+    const completedTasks = document.querySelectorAll('li.complete');
+
+    completedTasks.forEach((item) => {
+        const animation = item.animate ({ opacity: [1, 0]}, 500);
+
+        animation.onfinish = () => {
+            item.remove();
+        }
+    });
+    showInformation('Удалены выполненные задачи', 'finish');
+});
+
+select.addEventListener('change',(e) => {
+    switch (e.target.value) {
+        case 'uncompleted':
+            showUncompletedTasks();
+            break;
+        case 'completed':
+            showCompletedTasks();
+            break;
+        case 'all':
+            showAllTasks();
+            break;
+    }
 });
 

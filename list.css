@@ -11,6 +11,7 @@ html {
 li {
     list-style-type: none; /* Убираем маркеры */
     background-color: white;
+    animation: 1s show ease;
 }
 
 ul {
@@ -51,7 +52,6 @@ ul {
 
 .list > button {
     color: #c065c0;
-    background: dodgerblue;
     transition: all 0.3s ease;
     border: none;
     padding: 1.5em;
@@ -91,7 +91,12 @@ input::placeholder {
     color: blue;
 }
 
-.deleteAll:hover{
+.deleteAll:hover {
+    background-color: white;
+    width: 300px;
+}
+
+.deleteCompleted:hover{
     background-color: white;
     width: 300px;
 }
@@ -101,11 +106,12 @@ li:hover{
                 inset 5px 5px 30px 5px rgba(0, 0, 0, 0.2);
 }
 
-.deleteAll {
-    font-size: 200%;
+.deleteAll, .deleteCompleted {
+    font-size: 20px;
     background-color: blue;
     align-content: center;
     text-align: center;
+    margin: 10px;
 }
 
 .doneText {
@@ -132,38 +138,10 @@ li:hover{
     background-color: #c3aee6;
 }
 
-select{
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    outline: none;
-    border: none;
-}
-
-.select{
-    margin: 1rem;
-    position: relative;
-    overflow: hidden;
-}
-
-select{
-    color: blue;
-    width: 8rem;
-    cursor: pointer;
-    padding: 0.7rem;
-}
-
-.select::after{
-    content: "\25bc";
-    position: absolute;
-    color: blue;
-    top: 7px;
-    right: 6px;
-    pointer-events: none;
-}
-
-.select:hover::after{
-    color: #583429;
+.filterTodo {
+    height: 40px;
+    border: 0;
+    margin-left: 5px;
 }
 
 .wrapperBtn {
@@ -171,18 +149,42 @@ select{
     align-items: center;
 }
 
-.information {
+.informationWrapper{
     position: absolute;
     bottom: 30px;
     right: 30px;
+    width: 300px;
+}
+
+.information {
     border-radius: 5px;
     height: 30px;
     width: 300px;
     padding: 5px;
     color: white;
     align-items: center;
-    display: none;
     font-size: 20px;
+    display: flex;
+    margin-top: 20px;
+    animation: 1s show ease;
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes hide {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }
 
 .informationSuccess{
@@ -222,4 +224,15 @@ select{
     height: 30px;
     content: ' ';
     margin-right: 5px;
+}
+
+.wrapperDiv {
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    padding-bottom: 20px;
+    border: 20px;
 }

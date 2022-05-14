@@ -11,22 +11,23 @@
     <h1 class="title">Мои списки дел </h1>
     <div class="list"> <input type="text" id="input"  placeholder="Добавить список" required >
         <button class="addBtn" type="submit"></button>
-        <div class="select">
-            <select name="todos" class="filter_todo">
-                <option value="all">Всё</option>
-                <option value="Выполнено">Completed</option>
-                <option value="Невыполнено">Uncompleted</option>
-            </select>
+        <select name="todos" class="filterTodo">
+            <option value="all">Всё</option>
+            <option value="completed">Выполненные</option>
+            <option value="uncompleted">Не выполненные</option>
+        </select>
+    </div>
+    <div>
+        <div class="listFull">
+            <ul class="todos">
+            </ul>
+        </div>
+        <div class="wrapperDiv">
+            <button class="deleteCompleted"> Удалить выполненные </button>
+            <button class="deleteAll"> Удалить всё </button>
         </div>
     </div>
-    <div class="listUnFull">
-    <div class="listFull">
-        <ul class="todos">
-        </ul>
-    </div>
-    <button class="deleteAll"> Удалить всё </button>
-    </div>
-    <div class="information"> Информация </div>
+    <div class="informationWrapper"></div>
 </div>
 <script src="list.js"></script>
 </body>
