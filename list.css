@@ -44,28 +44,19 @@ ul {
 .list > input {
    height: 39px;
     margin: 0 0 0 5px;
-    padding: 0;
-    border: 0;
     width: 95%;
-    text-indent: 5%;
+    padding-left: 10px;
+    border: 1px solid #aaa;
+    box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+    border-radius: .5em;
 }
 
 .list > button {
-    color: #c065c0;
-    transition: all 0.3s ease;
-    border: none;
-    padding: 1.5em;
-    background-image: url("/image/ok.jpg");
-    background-size: cover;
-}
-
-.list > button:hover{
-    background: gray;
     color: white;
-    background-image: url("/image/ok.jpg");
-    background-size: cover;
-    padding: 1.5em;
     border: none;
+    padding: 1.5em;
+    background: url("/image/add.png") no-repeat center;
+    background-size: cover;
 }
 
 .listFull {
@@ -108,10 +99,14 @@ li:hover{
 
 .deleteAll, .deleteCompleted {
     font-size: 20px;
-    background-color: blue;
     align-content: center;
     text-align: center;
     margin: 10px;
+    background: linear-gradient(135deg, #6157d1 , #ba65c2);
+    border: 1px solid #aaa;
+    box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+    border-radius: .5em;
+
 }
 
 .doneText {
@@ -140,8 +135,13 @@ li:hover{
 
 .filterTodo {
     height: 40px;
-    border: 0;
     margin-left: 5px;
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid #aaa;
+    box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+    border-radius: .5em;
+    appearance: none;
 }
 
 .wrapperBtn {
