@@ -25,18 +25,24 @@ function createElement(text) {
     const completeBtn = document.createElement('button');
     const closeBtn = document.createElement('button');
     const wrapperBtn = document.createElement ("div");
+    const qwe = document.createElement ("div");
 
     closeBtn.addEventListener('click', deleteElement);
     closeBtn.classList.add('closeBtn');
     completeBtn.addEventListener('click', completeElement);
     completeBtn.classList.add('completeBtn');
     wrapperBtn.classList.add('wrapperBtn');
+    qwe.classList.add('date');
+    const wer = new Date();
+    qwe.innerHTML = wer.toLocaleString();
 
     li.innerText = text;
+    wrapperBtn.appendChild(qwe);
     wrapperBtn.appendChild(completeBtn);
     wrapperBtn.appendChild(closeBtn);
     li.appendChild(wrapperBtn);
     ul.appendChild (li);
+    showInformationUncompleted();
 }
 
 function deleteElement(event) {
@@ -45,18 +51,19 @@ function deleteElement(event) {
 
     animation.onfinish = () => {
         li.remove();
+        showInformationUncompleted();
     }
     showInformation('Задача удалена','finish');
 }
 
 function completeElement(e){ //удаление кнопки выполнения задачи
     e.target.parentElement.parentElement.classList.add('complete');
-    console.log(e.target);
     const animation = e.target.animate ({ opacity: [1, 0]}, 500);
 
     animation.onfinish = () => {
         e.target.remove();
     }
+    showInformationUncompleted();
 }
 
 function showInformation(text, type){
@@ -80,6 +87,7 @@ function showInformation(text, type){
             information.remove();
         }
     },5000);
+    showInformationUncompleted();
 }
 
 function showUncompletedTasks () {
@@ -92,6 +100,7 @@ function showUncompletedTasks () {
             item.style.display = 'none';
         }
     });
+    showInformationUncompleted();
 }
 
 function showAllTasks () {
@@ -100,6 +109,7 @@ function showAllTasks () {
     allTasks.forEach((item) => {
         item.style.display = 'flex';
     });
+    showInformationUncompleted();
 }
 
 function showCompletedTasks () {
@@ -112,10 +122,23 @@ function showCompletedTasks () {
             item.style.display = 'none';
         }
     });
+    showInformationUncompleted();
+}
+
+function showInformationUncompleted () {
+    const allTasks = document.querySelectorAll('li');
+    let number = 0;
+    allTasks.forEach((item) => {
+        if (!item.classList.contains('complete')) {
+            number++;
+        }
+    });
+    document.getElementById("informationUncompleted").innerHTML = 'У вас невыполненно ' + number + ' задач ! ';
 }
 
 deleteAll.addEventListener('click',() => {
     ul.innerHTML = '';
+    showInformationUncompleted();
 });
 
 input.addEventListener('keydown', (e) => {
@@ -139,6 +162,7 @@ deleteCompletedBtn.addEventListener('click',() => {
         }
     });
     showInformation('Удалены выполненные задачи', 'finish');
+    showInformationUncompleted();
 });
 
 select.addEventListener('change',(e) => {
@@ -154,4 +178,7 @@ select.addEventListener('change',(e) => {
             break;
     }
 });
+
+
+
 
