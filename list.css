@@ -246,7 +246,7 @@ li:hover{
     display: block;
     margin-left: auto;
     margin-right: auto;
-    color : red;
+    color : #03d3f4;
     font-weight: bold;
     font-style: italic;
     text-decoration: underline;
@@ -254,4 +254,6 @@ li:hover{
 
 .date {
     width: 50%;
+    font-style: oblique;
+    font-size: 80%;
 }

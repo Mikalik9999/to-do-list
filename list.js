@@ -5,9 +5,25 @@ const deleteAll = document.querySelector('.deleteAll');
 const informationWrapper = document.querySelector('.informationWrapper');
 const select = document.querySelector('.filterTodo');
 const deleteCompletedBtn = document.querySelector('.deleteCompleted');
+let arrayTasks = [];
 
-createElement('Вадик мерсовод');
-createElement('Андрюша аудюшник');
+arrayTasks.push({
+    id: 0,
+    text: 'Валик',
+    createDate: new Date(),
+    completed: false,
+});
+
+arrayTasks.push({
+    id: 1,
+    text: 'Андрюша',
+    createDate: new Date(),
+    completed: true,
+})
+
+arrayTasks.push(todo)
+
+loadTasksLocalStorage();
 
 function checkEmptyString () {
     if (input.value?.trim() === '' ) {
@@ -15,6 +31,7 @@ function checkEmptyString () {
     }
     else {
         createElement(input.value);
+        saveTasksLocalStorage();
         showInformation('Задача добавлена', 'success');
         input.value = '';
     }
@@ -25,25 +42,45 @@ function createElement(text) {
     const completeBtn = document.createElement('button');
     const closeBtn = document.createElement('button');
     const wrapperBtn = document.createElement ("div");
-    const qwe = document.createElement ("div");
+    const date = document.createElement ("div");
+    const dateNow = new Date();
 
     closeBtn.addEventListener('click', deleteElement);
     closeBtn.classList.add('closeBtn');
     completeBtn.addEventListener('click', completeElement);
     completeBtn.classList.add('completeBtn');
     wrapperBtn.classList.add('wrapperBtn');
-    qwe.classList.add('date');
-    const wer = new Date();
-    qwe.innerHTML = wer.toLocaleString();
+    date.classList.add('date');
+
+    date.innerHTML = dateNow.toLocaleString();
 
     li.innerText = text;
-    wrapperBtn.appendChild(qwe);
+
+    wrapperBtn.appendChild(date);
     wrapperBtn.appendChild(completeBtn);
     wrapperBtn.appendChild(closeBtn);
     li.appendChild(wrapperBtn);
     ul.appendChild (li);
+
     showInformationUncompleted();
+
+    const todo = {
+        name: text,
+        createDate: new Date(),
+        completed: false,
+
+    }
+    console.log(todo);
 }
+
+function saveTasksLocalStorage() {
+    localStorage.setItem('tasks', JSON.stringify(ul.innerHTML));
+}
+
+function loadTasksLocalStorage() {
+    ul.innerHTML = JSON.parse(localStorage.getItem('tasks'));
+}
+
 
 function deleteElement(event) {
     const li = event.target.parentElement.parentElement;
@@ -54,6 +91,7 @@ function deleteElement(event) {
         showInformationUncompleted();
     }
     showInformation('Задача удалена','finish');
+    saveTasksLocalStorage();
 }
 
 function completeElement(e){ //удаление кнопки выполнения задачи
@@ -64,6 +102,7 @@ function completeElement(e){ //удаление кнопки выполнени�
         e.target.remove();
     }
     showInformationUncompleted();
+    saveTasksLocalStorage();
 }
 
 function showInformation(text, type){
@@ -133,12 +172,15 @@ function showInformationUncompleted () {
             number++;
         }
     });
-    document.getElementById("informationUncompleted").innerHTML = 'У вас невыполненно ' + number + ' задач ! ';
+    document.getElementById("informationUncompleted").innerHTML = 'Невыполненных задач - ' + number + ' ! ';
+    saveTasksLocalStorage();
 }
+
 
 deleteAll.addEventListener('click',() => {
     ul.innerHTML = '';
     showInformationUncompleted();
+    saveTasksLocalStorage()
 });
 
 input.addEventListener('keydown', (e) => {
@@ -163,6 +205,7 @@ deleteCompletedBtn.addEventListener('click',() => {
     });
     showInformation('Удалены выполненные задачи', 'finish');
     showInformationUncompleted();
+    saveTasksLocalStorage();
 });
 
 select.addEventListener('change',(e) => {
@@ -178,7 +221,3 @@ select.addEventListener('change',(e) => {
             break;
     }
 });
-
-
-
-
