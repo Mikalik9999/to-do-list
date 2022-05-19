@@ -167,8 +167,7 @@ function showCompletedTasks () {
 }
 
 function showInformationUncompleted () {
-    const tasks = arrayTasks.filter((item) => item.completed === false) //сделать эту хуйню )
-    console.log(tasks.length);
+    const tasks = arrayTasks.filter((item) => item.completed === false);
     document.getElementById("informationUncompleted").innerHTML = 'Невыполненных задач - ' + tasks.length;
     saveTasksLocalStorage();
 }
