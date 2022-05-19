@@ -6,6 +6,7 @@ const informationWrapper = document.querySelector('.informationWrapper');
 const select = document.querySelector('.filterTodo');
 const deleteCompletedBtn = document.querySelector('.deleteCompleted');
 let arrayTasks = [];
+let sort = 'all';
 
 loadTasksLocalStorage();
 updateList();
@@ -67,11 +68,24 @@ function displayElement(objTasks) {
 }
 
 function updateList(){
-    ul.innerHTML = '';
-    arrayTasks.forEach( (item) => {
-        displayElement(item)
-    })
+    let tasks ;
+    switch (sort) {
+        case 'completed':
+            tasks = arrayTasks.filter(item => item.completed);
+            break;
+        case 'uncompleted':
+            tasks = arrayTasks.filter(item => !item.completed);
+            break;
+        default:
+            tasks = arrayTasks;
+            break;
+    }
 
+    ul.innerHTML = '';
+
+    tasks.forEach( (item) => {
+        displayElement(item)
+    });
     showInformationUncompleted();
 }
 
@@ -113,14 +127,16 @@ function showInformation(text, type){
     information.innerText = text;
     information.className = 'information';
     informationWrapper.appendChild(information);
-    if (type === 'error') {
-        information.classList.add('informationError');
-    }
-    if (type === 'success') {
-        information.classList.add('informationSuccess');
-    }
-    if (type === 'finish'){
-        information.classList.add('informationFinish');
+    switch (type) {
+        case 'error':
+            information.classList.add('informationError');
+            break;
+        case 'success':
+            information.classList.add('informationSuccess');
+            break;
+        case 'finish':
+            information.classList.add('informationFinish');
+            break;
     }
     setTimeout(()=> {
         const animation = information.animate ({ opacity: [1, 0]}, 1000);
@@ -128,41 +144,6 @@ function showInformation(text, type){
             information.remove();
         }
     },5000);
-    showInformationUncompleted();
-}
-
-function showUncompletedTasks () {
-    const allTasks = document.querySelectorAll('li');
-
-    allTasks.forEach((item) => {
-        if (!item.classList.contains('complete')) {
-            item.style.display = 'flex';
-        } else {
-            item.style.display = 'none';
-        }
-    });
-    showInformationUncompleted();
-}
-
-function showAllTasks () {
-    const allTasks = document.querySelectorAll('li');
-
-    allTasks.forEach((item) => {
-        item.style.display = 'flex';
-    });
-    showInformationUncompleted();
-}
-
-function showCompletedTasks () {
-    const allTasks = document.querySelectorAll('li');
-
-    allTasks.forEach((item) => {
-        if (item.classList.contains('complete')) {
-            item.style.display = 'flex';
-        } else {
-            item.style.display = 'none';
-        }
-    });
     showInformationUncompleted();
 }
 
@@ -207,15 +188,6 @@ deleteCompletedBtn.addEventListener('click',() => {
 });
 
 select.addEventListener('change',(e) => {
-    switch (e.target.value) {
-        case 'uncompleted':
-            showUncompletedTasks();
-            break;
-        case 'completed':
-            showCompletedTasks();
-            break;
-        case 'all':
-            showAllTasks();
-            break;
-    }
+    sort = e.target.value;
+    updateList();
 });
